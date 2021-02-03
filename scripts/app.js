@@ -7,6 +7,7 @@ function init() {
   const randomHead = document.createElement('img')
   const randomBody = document.createElement('img')
   const fileNameInput = document.getElementById('file_name_input')
+  const shuffleButton = document.getElementById('shuffle')
   const downloadIconButton = document.getElementById('download_icon_button')
   let filenum = 0
 
@@ -44,7 +45,6 @@ function init() {
 
 
   function downloadSprite() {
-    drawImage()
     filenum++
 
     const fileName = fileNameInput.value === '' ? 'icon' : fileNameInput.value
@@ -54,7 +54,13 @@ function init() {
     link.download = `${fileName}${filenum}.png`
     link.click()
   }
+
+  function resetNumber() {
+    filenum = 0
+  }
   
+  fileNameInput.onchange = resetNumber
+  shuffleButton.onclick = drawImage
   downloadIconButton.onclick = downloadSprite
 }
 
